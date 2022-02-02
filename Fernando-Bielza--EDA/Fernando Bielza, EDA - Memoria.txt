@@ -1,0 +1,63 @@
+
+MEMORIA DE "EL BOMBARDEO DE LOS ALIADOS DURANTE LA SEGUNDA GUERRA MUNDIAL":
+
+	INTRODUCCIÓN:
+
+Este proyecto intenta arrojar algo de luz a la cuestión de los bombardeos producidos, por parte de los Aliados (Reino Unidos, USA, Nueva Zelanda, Australia y Sudáfrica) a lo largo de los años 1939 y 1945, al ser esta, pese a su relevancia, un tema mayormente desconocido por el público en general, pero que explicaría las acciones y soluciones encontradas (por los mencionados Aliados) en el conflicto más destructivo de la Historia de la Humanidad.
+
+Mi hipótesis de partida sería que este desconocimiento se debe a que las operaciones de bombardeo no obtuvieron los resultados deseados, o o que no estarían dispuestos a reconocer, a lo largo de la contienda.
+
+
+
+	CÓDIGO PYTHON:
+
+>Importar librerías necesarias:
+	·Aquí esttán todas las librerías que he utilizado en el proyecto.
+
+
+>Obtener el DataFrame THOR y una copia (DataFrame General)
+	·Para poder trabajar con el DataFrame y poder modificarlo a mi gusto sin necesidad de tocar el original.
+
+
+>Arreglar DataFrame General
+	·Debido a que, tras un primer visionado, fue fácil darse cuenta de los numerosos dátos vacíos (NaN), además de algunos datos claramente erróneos (principalmente por coordenadas erróneas, o ausentes, pero también mala asignación de países, valores de las toneladas arrojads...) y elimminar aquellas filas fechadas posteriormente al final de la Segunda Guerra Mundial.
+	·También aquí, para poder trabajar mejor, convertí la columna de las fechas en el índice del DataFrame, siendo esto fundamental en el proyecto.
+
+
+>Funiones
+	·Apartado más importante del proyecto. Aquí tengo todas las funciones desarrolladas para poder trabajar el DataFrame adecuadamente. Estas serían:
+	·Función para poder localizar las filas localizadas entre las fechas deseadas. Esta nos daría un dataframe con todas filas que corresponden a las fechas indicadas. Si queremos únicamente un día específico, también funciona.
+	·Función para obtener una gráfica de barras del número de operaciones realizadas en el DataFrame que introduzcamos. La indica según meses y año. Esta (a igual que todas las demás que generan una gráfica o un mapa), tiene la opción de guardar como imagen (o como elemento html) el elemento que genera.
+	·Función para obtener un DataFrame que indique los Modelos de Avión, sus países, y el total de Toneladas arrojadas.
+	·Funciones para geolocalizar, una mediante iconos, otra mediante círculos, y otra que indica las distancias habidas entre el punto de partida del avión atacante y su destino. Las dos primeras funciones, además, indicarían (tanto por color, imagen, click y pestañas), información útil, como la intensidad del bombardeo, el modelo de avión, o la localidad. Tendrían la capacidad de filtrar por número de toneladas arrojadas, disponer de minimapa, o escalar (además de poder editar el tamaño de los círculos en el caso de la función de círculos). Además, habría que mencinar las tres funciones extra que utilizo para poder complementar estas funciones de geolocalización.
+	·Función para obtener, mediante una gráfica de tarta, los modelos de avión más frecuentes dentro del DataFrame introducido. Se pueden filtrar los modelos más frecuentes, englobando al resto en una misma porción de la tarta.
+	·Funciones para obtener, mediante gráfica de barras (solo los 10 mayores, de haberlos), información de los aviones dentro del DataFrame introducido. El primero daría información sobre el número total de operaciones, el total de toneladas arrojadas, y su media (puediendo, además, dar una información extra, acerca del porcentaje de toneladas arrojadas con respecto a los aviones de dentro de la función, el porcentaje con respecto al total de toneladas arrojadas en toda la guerra, y su comparación con el bombardeo de Nagasaki (el más destructivo). El segundo es igual que el primero, pero con la particularidad de que uno mismo introduce los modelos de avión deseados (en caso el caso de no indicarlos, automáticamente escogería los 10 más frecuentes), mientras que el tercero indica la participación de cada los modelos que nosotros deseemos (igualmente, de no indicarlos, escogería los 10 más frecuentes) en cada uno de los teatros de operaciones. Por supuesto, en todos ellos se puede editar la escala, las toneladas arrojadas mínimas, el número de aviones que nos interesa explorar, obtener información escrita y una comparación...
+	·Funciones para obtener las filas con respecto a uno de los paises atacantes del DataFrame introducido. Así, si solo nos interesa saber las operaciones de un país, es muy útil. Podemos obtenerlo de un único país (Reino Unido, USA, Nueva Zelanda, Australia, Sudáfrica, País Desconocido) o de varios (Reino Unido y USA juntos o Nueva Zelanda, Australia y Sudáfrica juntos). Además, tenemos dos funciones que devuelven una gráfica de barras, uno con la cantidad de operaciones realizadas por cada país aliado en cada uno de los tearos de operaciones dentro del DataFrame introducido, y el otro indica el total de toneladas arrojadas por cada uno de los países. En ambos hemos unificado los resultados de Nueva Zelanda, Australia, Sudáfrica (al ser, cláramente inferiores), además de que tenemos la posibilidad de mostrar o no los datos de País Desconocido.
+	·Funciones para obtener las filas con respecto a los lugares atacados. Tenemos una función para cada uno de los seis teatros de operaciones (y otro para los No Identificados), además de otra para obtener las filas de uno o varios paises atacados que nosotros deseemos, y otra para hacer lo propio, pero con las regiones deseadas. Además, tenemos otra función que devuelve una gráfica de barras en la que se indica el total de toneladas arrojadas, dentro del DataFrame introducido, sobre cada uno de los 10 países más destacados (Alemania, Japón, Italia, Francia, Brimania...). La última de estas devuelve un DataFrame con los lugares atacados No Identificados.
+	·Las últimas tres funciones son funciones que sirven para ayudar a los otras funciones que utilicen mapas o gráficos, para así establecer el estilo deseado.
+
+
+>Generar DataFrames por Años
+	·Aquí se crean los DataFrames correspondientes a cada uno de los seis años (fundamentales para trabaja por fases de la guerra), utilizando para ello la función que localiza por fechas. Además, creamos dos gráficas de barras, que indican tanto el número de operaciones realizadas a lo largo de la guerra, como el total de toneladas arrojadas en cada año (comparándolas, además, con el total). A continuación, se mostraría un desglose cada una de las operaciones, limitadas a cada año.
+
+
+>Fechas Destacadas
+	·Aquí se conforman los DataFrames correspondientes a fechas y localizaciones específicas y relevantes, para así tener únicamente la información de esas operaciones de bombardeo específicas. Se trataría de bombardeos relevantes, o etapas específicas, entre las que se destacan el Bombardeo sobre Hamburgo, Tokio, la Batalla de Francia, o las dos bombas atómicas.
+
+
+>Teatro de Operaciones más frecuente
+	·Visualización, mediante diferentes gráficas de barras, de la incidencia de cada uno de los teatros de operaciones, habiendo una que muestra el total de operaciones, una relación entre países atacantes y teatros de operaciones (uno con el total, y otro específicamente de 1945), y dos que muestran sobre las operaciones de más de 100 toneladas, y otras con más de 800.
+
+
+>Modelos de Avión más frecuentes
+	·Muestra de cinco gráficos tres de tarta y dosde barras), en donde se muestran los modelos de avión más frecentes en total, en la Batalla de Inglaterra, en las operaciones de más de 400 y 1000, toneladas arrojadas, y otro específico de las de más de 990 toneladas.
+
+
+>Destrucción Total
+	·Aquí tenemos una gráfica con el número de toneladas arrojadas de cada una de las operaciones a lo largo de la guerra, otra gráfica que muestra la densidad de la cantidad de toneladas arrojadas en todas las operaciones (demostrando que la inmensa mayoría apenas arrojaban nada) y otra que muestra la cantidad de toneladas arrojadas a cada uno de los países atacados, con respecto a cada uno de los países atacantes.
+	·Además, hay gráficas extra que, mediante las funciones que indicaban el número, total, y media de bombardeos de cada modelo de avión, muestras los 10 aviones más frecuentes (en el caso de la segunda gráfica) y los 10 aviones con mayor índice de toneladas arrojadas (en el caso de la primera).
+	·Para finalizar, tenemos una gráfica que relaciona el número de aviones dentro de cada operación, con respecto al total de toneladas arrojadas (indicando, además, la procedencia del avión).
+
+
+OTROS
+	·Aquí se encontrarían una gráfica sobrante, pero igualmente interesante, que es la correlación entre las diferetes columnas del DataFrame.
